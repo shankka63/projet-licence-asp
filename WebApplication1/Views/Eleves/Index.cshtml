@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ClassLibrary1.Entites.Eleve>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+@using (Html.BeginForm())
+{
+    <div class="col-lg-6" style="margin-bottom: 5px">
+        <div class="input-group" style="display: block;">
+            @Html.TextBox("SearchString", "", new { @class = "form-control", @placeholder = "SearchFor" })
+            <span class="input-group-btn">
+                <input class="btn btn-default" type="submit" value="Go!" />
+            </span>
+        </div>
+    </div>
+}
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Classe.NomEtablissement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prenom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateNaissance)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Classe.NomEtablissement)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prenom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateNaissance)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EleveId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.EleveId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EleveId })
+                </td>
+            </tr>
+        }
+
+    </table>

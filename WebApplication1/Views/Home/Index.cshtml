@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Accueil";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Meilleurs élèves :</h2>
+            <table class="table">
+                <tr>
+                    <th>
+                        Nom
+                    </th>
+                    <th>
+                        Prénom
+                    </th>
+                    <th>
+                        Moyenne
+                    </th>
+                </tr>
+
+
+
+                @foreach (var pair in (Dictionary<ClassLibrary1.Entites.Eleve, string>)ViewData["elevesMap"])
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(e => pair.Key.Nom)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(e => pair.Key.Prenom)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(e => pair.Value)
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+
+        <div class="col-md-6">
+            <h2>Dernières absences :</h2>
+
+            <table class="table">
+                <tr>
+                    <th>
+                        Nom
+                    </th>
+                    <th>
+                        Prénom
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                </tr>
+
+
+
+                @foreach (var item in (List<ClassLibrary1.Entites.Absence>)ViewData["absences"])
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(abs => item.Eleve.Nom)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(abs => item.Eleve.Prenom)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(abs => item.DateAbsence)
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+    </div>
+</div>
